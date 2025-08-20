@@ -17,6 +17,8 @@ If you are developing a production application, we recommend using TypeScript wi
 --------
 
 
+STEPS:
+
 
 
 npm create vite@latest
@@ -24,3 +26,24 @@ npm create vite@latest
 
 npm install tailwindcss @tailwindcss/vite
 (https://tailwindcss.com/docs/installation/using-vite)
+
+
+/frontend/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── routes/
+│   ├── services/         // API logic here
+│   ├── store/            // Global state (optional with Context or Redux)
+│   ├── utils/            // Helpers
+│   ├── App.jsx
+│   ├── main.jsx
+├── public/
+├── .env
+├── tailwind.config.js
+├── package.json
+└── vite.config.js
+
+
+npm install react-router-dom
