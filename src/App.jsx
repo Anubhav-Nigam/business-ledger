@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './components/LoginPage';
+import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
