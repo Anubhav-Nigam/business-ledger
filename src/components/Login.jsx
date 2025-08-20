@@ -15,14 +15,16 @@ export default function Login() {
   }
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await api.post("/auth/login", { email, password });
-      login(res.data.token); // use context instead of navigate
-    } catch (err) {
-      setError("Invalid email or password");
-    }
-  };
+  e.preventDefault();
+  try {
+    const res = await api.post("/auth/login", { email, password });
+
+    // Pass both token and user info to context
+    login(res.data.token, res.data.user);
+  } catch (err) {
+    setError(err.response?.data?.message || "Invalid email or password");
+  }
+};
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
