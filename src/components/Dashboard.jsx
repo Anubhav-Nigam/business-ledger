@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from '../middleware/api';
-import { useAuth } from '../store/authContext';
+import { useAuth } from '../context/authContext';
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
