@@ -1,32 +1,60 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../middleware/api';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../middleware/api";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post('/auth/login', { email, password });
-      localStorage.setItem('token', res.data.token); // Save JWT
-      navigate('/dashboard');
+      const res = await api.post("/auth/login", { email, password });
+      localStorage.setItem("token", res.data.token);
+      navigate("/dashboard");
     } catch (err) {
-      alert('Login failed');
+      setError("Invalid email or password");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md w-80">
-        <h2 className="text-xl mb-4 font-bold">Login</h2>
-        <input className="input" type="email" placeholder="Email" value={email}
-               onChange={(e) => setEmail(e.target.value)} required />
-        <input className="input mt-2" type="password" placeholder="Password" value={password}
-               onChange={(e) => setPassword(e.target.value)} required />
-        <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded" type="submit">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white shadow-lg rounded-lg p-8 w-96 space-y-6"
+      >
+        <h1 className="text-2xl font-bold text-center">Login</h1>
+        
+        {error && <p className="text-red-500 text-center">{error}</p>}
+
+        <div>
+          <label className="block text-sm font-medium">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+        >
           Login
         </button>
       </form>
