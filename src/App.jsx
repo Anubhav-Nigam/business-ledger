@@ -2,8 +2,8 @@ import { useState } from 'react'
 import './App.css'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Dashboard';
+import LoginPage from './components/LoginPage';
+import Dashboard from './components/Dashboard';
 
 function App() {
 
@@ -12,7 +12,6 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        {/* more routes */}
       </Routes>
     </Router>
   );

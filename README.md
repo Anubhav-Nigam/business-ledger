@@ -47,3 +47,8 @@ npm install tailwindcss @tailwindcss/vite
 
 
 npm install react-router-dom
+
+
+I am using mock db and mock backend api using:
+https://mockapi.io/projects/68a5d10b2a3deed2960f04d1
+
