@@ -1,19 +1,18 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 import api from "../middleware/api";
+import { useAuth } from '../store/authContext';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const res = await api.post("/auth/login", { email, password });
-      localStorage.setItem("token", res.data.token);
-      navigate("/dashboard");
+      login(res.data.token); // use context instead of navigate
     } catch (err) {
       setError("Invalid email or password");
     }
@@ -26,7 +25,6 @@ export default function Login() {
         className="bg-white shadow-lg rounded-lg p-8 w-96 space-y-6"
       >
         <h1 className="text-2xl font-bold text-center">Login</h1>
-        
         {error && <p className="text-red-500 text-center">{error}</p>}
 
         <div>
