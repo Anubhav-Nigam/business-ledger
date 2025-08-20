@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import api from "../middleware/api";
-import { useAuth } from '../store/authContext';
+import { useAuth } from "../store/authContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useAuth();
+  const { token, login } = useAuth();
+
+  // If already logged in, redirect straight to dashboard
+  if (token) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
