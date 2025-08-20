@@ -48,7 +48,3 @@ sample project structure: I am using little different structure
 
 npm install react-router-dom
 npm i axios
-
-I am using mock db and mock backend api using:
-https://mockapi.io/projects/68a5d10b2a3deed2960f04d1
-
